@@ -7,8 +7,8 @@ import java.util.HashMap;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import hu.barbar.miner_assistant.util.ConfigParameters;
 import hu.barbar.miner_assistant.util.IncomeResultForCoin;
-import hu.barbar.miner_assistant.util.ProfitForConfig;
 import hu.barbar.util.FileHandler;
 
 /**
@@ -27,15 +27,19 @@ public class App{
 	
 	
 	
-    public static void main( String[] args ){
+    @SuppressWarnings("deprecation")
+	public static void main( String[] args ){
     	
     	//getDataFor("coins.json");
-    	double hp = 74.2;
-    	String unit = "MH";
-    	double power = 440;
-    	double energyPrice = 0.155;
-    	ProfitForConfig profit = ProfitabilityChecker.getProfitForConfig("eth", hp, unit, power, energyPrice);
-    	System.out.println("ETH\t" + hp + unit + "\t with " + power + "Wh @ " + energyPrice + "$/KWh =>\t" + profit.getProfitPerMonthInUSD() + "\tIncome: " + profit.getIncomePerMonth() + "\tCosts: " + profit.getCostPerMonthInUSD());
+    	
+    	
+    	ConfigParameters cp = new ConfigParameters("eth", 74.2, "MH", 440, 0.155);
+    	System.out.println(cp.toString() + "\n");
+    	cp.checkProfitabilityIfNotCheckedSince(new Date(2017,05,17,14,50,00));
+    	System.out.println(cp.toString() + "\n");
+    	
+    	cp.checkProfitabilityIfNotCheckedSince(new Date(117,04,17,14,50,00));
+    	System.out.println(cp.toString() + "\n");
         
     }
     
