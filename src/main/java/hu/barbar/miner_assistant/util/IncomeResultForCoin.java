@@ -21,14 +21,30 @@ public class IncomeResultForCoin implements Serializable {
 	
 	private String coinName = null;
 	
-	private float incomePerUnitPerMonth = -1;
+	private double incomePerUnitPerMonth = -1;
 
 	
-	public IncomeResultForCoin(Date dateOfCheck, String coinShortName, String coinName, float incomePerUnitPerMonth) {
+	public IncomeResultForCoin(Date dateOfCheck, String coinShortName, String coinName, double incomePerUnitPerMonth) {
 		super();
 		this.dateOfCheck = dateOfCheck;
 		this.coinShortName = coinShortName;
 		this.coinName = coinName;
+		this.incomePerUnitPerMonth = incomePerUnitPerMonth;
+	}
+	
+	public IncomeResultForCoin(String coinShortName, String coinName, float incomePerUnitPerMonth) {
+		super();
+		this.dateOfCheck = new Date();
+		this.coinShortName = coinShortName;
+		this.coinName = coinName;
+		this.incomePerUnitPerMonth = incomePerUnitPerMonth;
+	}
+	
+	public IncomeResultForCoin(String coinShortName, float incomePerUnitPerMonth) {
+		super();
+		this.dateOfCheck = new Date();
+		this.coinShortName = coinShortName;
+		this.coinName = coinShortName;
 		this.incomePerUnitPerMonth = incomePerUnitPerMonth;
 	}
 
@@ -48,13 +64,13 @@ public class IncomeResultForCoin implements Serializable {
 	}
 
 
-	public float getIncomePerUnitPerMonth() {
+	public double getIncomePerUnitPerMonth() {
 		return incomePerUnitPerMonth;
 	}
 	
 	
 	public String getLine(String separator){
-		return tf.format(this.dateOfCheck) + separator + this.coinName + separator + Float.toString(this.incomePerUnitPerMonth) + separator + "$ / month / MH";
+		return tf.format(this.dateOfCheck) + separator + this.coinName + separator + Double.toString(this.incomePerUnitPerMonth) + separator + "$ / month / MH";
 	}
 	
 	
